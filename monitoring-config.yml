@@ -1,0 +1,10 @@
+groups:
+  - name: alert.rules
+    rules:
+      - alert: HighCPUUsage
+        expr: avg by (instance) (rate(node_cpu_seconds_total[5m])) > 0.85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage detected"
